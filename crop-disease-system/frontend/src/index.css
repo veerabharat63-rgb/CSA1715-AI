@@ -1,0 +1,200 @@
+/* ─── Google Fonts ────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+/* ─── Tailwind Directives ────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Layer ─────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8FAFC; /* Alabaster */
+    color: #1E293B;
+    min-height: 100vh;
+
+    /* Subtle dot-grid texture */
+    background-image: radial-gradient(
+      circle,
+      #CBD5E1 0.75px,
+      transparent 0.75px
+    );
+    background-size: 24px 24px;
+    background-position: 0 0;
+  }
+
+  /* Tabular numbers for data-heavy readouts */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Focus-visible accessibility ring */
+  :focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Remove default focus ring for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ─── Component Layer ────────────────────────────────────────────── */
+@layer components {
+  /* Glass-panel: translucent white card */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 16px;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Elevated glass variant */
+  .glass-panel-elevated {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.05),
+      0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Status indicator dot (animated) */
+  .status-dot {
+    @apply inline-block w-2.5 h-2.5 rounded-full;
+    animation: statusPulse 2s ease-in-out infinite;
+  }
+
+  .status-dot--online {
+    @apply bg-emerald-agri-500;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+  }
+
+  .status-dot--offline {
+    @apply bg-crimson-disease-500;
+    box-shadow: 0 0 8px rgba(244, 63, 94, 0.5);
+  }
+
+  .status-dot--pending {
+    @apply bg-amber-spray-500;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+  }
+
+  @keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+}
+
+/* ─── Utility Layer ──────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ─── Custom Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.45);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .status-dot {
+    animation: none;
+  }
+}
+
+/* ─── Print Styles (Advisory Report) ─────────────────────────────── */
+@media print {
+  body {
+    background: #fff !important;
+    background-image: none !important;
+    color: #000 !important;
+    font-size: 11pt;
+  }
+
+  .glass-panel,
+  .glass-panel-elevated {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  /* Hide non-essential UI for printing */
+  nav,
+  .no-print,
+  .status-dot {
+    display: none !important;
+  }
+
+  /* Page margins for advisory report */
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+
+  h1, h2, h3 {
+    break-after: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+    break-inside: avoid;
+  }
+}

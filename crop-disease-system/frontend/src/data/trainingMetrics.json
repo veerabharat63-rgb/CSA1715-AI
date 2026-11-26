@@ -1,0 +1,155 @@
+{
+  "dataset_name": "PlantVillage + PlantDoc + CropGuard Agronomic Dataset",
+  "dataset_specification": ">3,500 Labeled Rose & Crop Foliage Images",
+  "total_images": 4330,
+  "num_classes": 7,
+  "classes": [
+    "Black Spot",
+    "Botrytis Blight",
+    "Downy Mildew",
+    "Early Blight",
+    "Healthy",
+    "Powdery Mildew",
+    "Rust"
+  ],
+  "class_distribution": {
+    "Black Spot": 720,
+    "Botrytis Blight": 510,
+    "Downy Mildew": 510,
+    "Early Blight": 510,
+    "Healthy": 720,
+    "Powdery Mildew": 680,
+    "Rust": 680
+  },
+  "train_count": 3464,
+  "val_count": 866,
+  "train_val_split": "80% / 20%",
+  "model_architecture": "MobileNetV3-Small (Transfer Learned + Lesion Head)",
+  "epochs_trained": 1,
+  "training_duration_s": 101.2,
+  "final_train_acc": 59.7,
+  "final_val_acc": 93.07,
+  "best_val_acc": 93.07,
+  "overall_macro_f1": 92.7,
+  "epoch_history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.0008,
+      "train_acc": 59.7,
+      "val_loss": 0.209,
+      "val_acc": 93.07,
+      "lr": 0.0,
+      "duration_s": 101.0
+    }
+  ],
+  "per_class_metrics": {
+    "Black Spot": {
+      "precision": 97.9,
+      "recall": 99.3,
+      "f1_score": 98.6,
+      "support": 144
+    },
+    "Botrytis Blight": {
+      "precision": 98.6,
+      "recall": 70.6,
+      "f1_score": 82.3,
+      "support": 102
+    },
+    "Downy Mildew": {
+      "precision": 94.4,
+      "recall": 100.0,
+      "f1_score": 97.1,
+      "support": 102
+    },
+    "Early Blight": {
+      "precision": 98.9,
+      "recall": 85.3,
+      "f1_score": 91.6,
+      "support": 102
+    },
+    "Healthy": {
+      "precision": 98.5,
+      "recall": 91.7,
+      "f1_score": 95.0,
+      "support": 144
+    },
+    "Powdery Mildew": {
+      "precision": 75.7,
+      "recall": 98.5,
+      "f1_score": 85.6,
+      "support": 136
+    },
+    "Rust": {
+      "precision": 97.1,
+      "recall": 100.0,
+      "f1_score": 98.6,
+      "support": 136
+    }
+  },
+  "confusion_matrix": [
+    [
+      143,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      72,
+      0,
+      0,
+      0,
+      30,
+      0
+    ],
+    [
+      0,
+      0,
+      102,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      1,
+      6,
+      87,
+      0,
+      1,
+      4
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      132,
+      12,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      2,
+      134,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      136
+    ]
+  ],
+  "trained_at": "2026-11-18T09:07:25Z"
+}

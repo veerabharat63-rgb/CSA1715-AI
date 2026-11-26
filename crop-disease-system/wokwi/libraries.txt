@@ -1,0 +1,6 @@
+# Wokwi Arduino / ESP32 Dependencies for CropGuard AI
+ArduinoJson
+ESP32Servo
+LiquidCrystal I2C
+DHT sensor library
+Adafruit Unified Sensor

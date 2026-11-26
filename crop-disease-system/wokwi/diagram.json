@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "author": "CropGuard AI Agritech Team",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 120,
+      "left": 160,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": -85,
+      "left": 110,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "sonar",
+      "top": -75,
+      "left": -130,
+      "attrs": { "distance": "24" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": 105,
+      "left": -120,
+      "attrs": { "temperature": "26.5", "humidity": "82" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo",
+      "top": 355,
+      "left": 360,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_scan",
+      "top": 320,
+      "left": 40,
+      "attrs": { "color": "green", "label": "SCAN LEAF" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw_auto",
+      "top": 380,
+      "left": 130,
+      "attrs": { "label": "AUTO PATROL" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_spray",
+      "top": 110,
+      "left": 440,
+      "attrs": { "color": "blue", "label": "SPRAY ACTUATOR" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_alert",
+      "top": 180,
+      "left": 440,
+      "attrs": { "color": "red", "label": "DISEASE ALERT" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 145,
+      "left": 375,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 215,
+      "left": 375,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+
+    [ "esp:GND.1", "lcd:GND", "black", [ "h-20", "v-180" ] ],
+    [ "esp:5V", "lcd:VCC", "red", [ "h-10", "v-170" ] ],
+    [ "esp:D21", "lcd:SDA", "blue", [ "h-30", "v-170" ] ],
+    [ "esp:D22", "lcd:SCL", "yellow", [ "h-40", "v-160" ] ],
+
+    [ "esp:5V", "sonar:VCC", "red", [ "h-50", "v-155" ] ],
+    [ "esp:GND.1", "sonar:GND", "black", [ "h-60", "v-145" ] ],
+    [ "esp:D5", "sonar:TRIG", "purple", [ "h-20", "v-120" ] ],
+    [ "esp:D18", "sonar:ECHO", "orange", [ "h-10", "v-110" ] ],
+
+    [ "esp:3V3", "dht:VCC", "red", [ "h-30", "v-20" ] ],
+    [ "esp:GND.1", "dht:GND", "black", [ "h-50", "v-10" ] ],
+    [ "esp:D4", "dht:SDA", "green", [ "h-20", "v-10" ] ],
+
+    [ "esp:D19", "btn_scan:2.l", "green", [ "h-20", "v120" ] ],
+    [ "esp:GND.2", "btn_scan:1.l", "black", [ "v40", "h-60" ] ],
+
+    [ "esp:D23", "sw_auto:2", "cyan", [ "h-30", "v170" ] ],
+    [ "esp:GND.2", "sw_auto:1", "black", [ "v60", "h-30" ] ],
+
+    [ "esp:D2", "r1:1", "blue", [ "h20" ] ],
+    [ "r1:2", "led_spray:A", "blue", [ "h20" ] ],
+    [ "esp:GND.2", "led_spray:C", "black", [ "v20", "h180" ] ],
+
+    [ "esp:D15", "r2:1", "red", [ "h20" ] ],
+    [ "r2:2", "led_alert:A", "red", [ "h20" ] ],
+    [ "esp:GND.2", "led_alert:C", "black", [ "v40", "h180" ] ],
+
+    [ "esp:5V", "servo:V+", "red", [ "v180", "h150" ] ],
+    [ "esp:GND.2", "servo:GND", "black", [ "v190", "h140" ] ],
+    [ "esp:D13", "servo:PWM", "gold", [ "h30", "v140" ] ]
+  ]
+}
